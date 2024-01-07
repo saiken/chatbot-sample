@@ -27,4 +27,4 @@
 - sassファイルを開いて、「Watch Sass」をクリックすると自動でcssファイルが作成される
 
 ## UI Image
-<img width="835" alt="image" src="https://github.com/saiken/chatbot-sample/assets/827936/ef34e2e0-e3ec-4023-9e4a-f9c5d8698c93">
+<img width="886" alt="image" src="https://github.com/saiken/chatbot-sample/assets/827936/daa1af98-32d2-40f5-8450-6e8d6617a6fc">
