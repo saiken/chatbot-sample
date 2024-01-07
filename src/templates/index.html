@@ -6,74 +6,62 @@
     <link rel="stylesheet" href="/static/index.css">
 </head>
 <body>
-<div class="ChatWindow">
-  
-  <div class="ChatItem ChatItem--customer">
-    <div class="ChatItem-meta">
-      <div class="ChatItem-avatar">
-        <img class="ChatItem-avatarImage" src="https://image.ibb.co/eTiXWa/avatarrobot.png">
+<script type="importmap">
+  {
+    "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+    }
+  }
+</script>
+
+{% raw %}
+<div id="app" class="ChatWindow">
+
+
+    <template v-for="talk in talkHistory">
+      <div class="ChatItem" :class="talk.role === 'user'?'ChatItem--customer':'ChatItem--expert'">
+        <div class="ChatItem-meta">
+          <div class="ChatItem-avatar">
+            <img class="ChatItem-avatarImage" :src="talk.role === 'user'
+              ?'https://2.bp.blogspot.com/-h1B-4UIVwqI/WdyDlrJWSnI/AAAAAAABHdw/7u_elOdMW0Ux_s4S5qVAp0qIf51ejRUWQCLcBGAs/s400/kaisya_desk3_man.png'
+              :'https://2.bp.blogspot.com/-H2eLSLfzvpA/XGjx1UapC6I/AAAAAAABRcA/5Xdh-W7tqk8X1YONndv2B1ykhJ6BRS1bgCLcBGAs/s800/ai_computer_sousa_robot.png'"
+            >
+          </div>
+        </div>
+        <div class="ChatItem-chatContent">
+          <div class="ChatItem-chatText">{{talk.message}}</div>
+        </div>
       </div>
+
+    </template>
+
+    <div class="ChatInput is-hidey">
+      <div class="ChatInput-input" contenteditable="true" placeholder="Type your message here..."></div>
     </div>
-    <div class="ChatItem-chatContent">
-      <div class="ChatItem-chatText">sound isnt working on my phone anymore</div>
-      <div class="ChatItem-timeStamp"><strong>Chat Bot</strong> • Today 05:49</div>
-    </div>
-  </div>
-  
-  <div class="ChatItem ChatItem--expert">
-    <div class="ChatItem-meta">
-      <div class="ChatItem-avatar">
-        <img class="ChatItem-avatarImage" src="https://randomuser.me/api/portraits/women/0.jpg">
-      </div>
-    </div>
-    <div class="ChatItem-chatContent">
-      <div class="ChatItem-chatText">hi there!</div>
-      <div class="ChatItem-chatText">i'd be happy to help you!</div>
-      <div class="ChatItem-chatText">just to make sure, have you tried pressing the physical volume button on the side to make sure the volume is all the way up?</div>
-      <div class="ChatItem-timeStamp"><strong>Me</strong> • Today 05:49</div>
-    </div>
-  </div>
-  
-  <div class="ChatItem ChatItem--customer">
-    <div class="ChatItem-meta">
-      <div class="ChatItem-avatar">
-        <img class="ChatItem-avatarImage" src="https://image.ibb.co/eTiXWa/avatarrobot.png">
-      </div>
-    </div>
-    <div class="ChatItem-chatContent">
-      <div class="ChatItem-chatText">k let metry</div>
-      <div class="ChatItem-timeStamp"><strong>Chat Bot</strong> • Today 05:51</div>
-    </div>
-  </div>
-  
-  <div class="ChatItem ChatItem--customer">
-    <div class="ChatItem-meta">
-      <div class="ChatItem-avatar">
-        <img class="ChatItem-avatarImage" src="https://image.ibb.co/eTiXWa/avatarrobot.png">
-      </div>
-    </div>
-    <div class="ChatItem-chatContent">
-      <div class="ChatItem-chatText">i think the volume is all the way up</div>
-      <div class="ChatItem-timeStamp"><strong>Chat Bot</strong> • Today 05:53</div>
-    </div>
-  </div>
-  
-  <div class="ChatItem ChatItem--expert">
-    <div class="ChatItem-meta">
-      <div class="ChatItem-avatar">
-        <img class="ChatItem-avatarImage" src="https://randomuser.me/api/portraits/women/0.jpg">
-      </div>
-    </div>
-    <div class="ChatItem-chatContent">
-      <div class="ChatItem-chatText">no worries!</div>
-      <div class="ChatItem-chatText">try this for me: <br><br>- Go to Settings<br><br>- Go to Sound <br><br>- Make sure mute is off</div>
-      <div class="ChatItem-timeStamp"><strong>Me</strong> • Today 05:54</div>
-    </div>
-  </div>
-  
- 
-<div class="ChatInput is-hidey">
-    <div class="ChatInput-input" contenteditable="true" placeholder="Type your message here..."></div>
 </div>
+{% endraw %}
+
+<script type="module">
+  import { createApp } from 'vue';
+
+  createApp({
+    data() {
+      return {
+        talkHistory:[
+          {
+            role: 'user',
+            message: 'こんにちは、むすめのプレゼントは何がいいですか？',
+          },
+          {
+            role: 'assistant',
+            message: `こんにちは！むすめへのプレゼントは、彼女の趣味や興味に合ったものが良いでしょう。
+以下はいくつかのアイデアですが、具体的な好みによって選ぶと良いでしょう
+・本や漫画: 彼女が読書が好きなら、お気に入りの作家や最新のベストセラーを選んでみてください。`
+          },
+        ],
+      };
+    }
+  }).mount('#app');
+</script>
 </body>
 </html>
