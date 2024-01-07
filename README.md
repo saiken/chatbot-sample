@@ -1,5 +1,5 @@
 # ChatBot Sample
-- for study.  
+- for study  
 - reference site  
   https://codepen.io/zenworm/pen/KqLNPm
 
