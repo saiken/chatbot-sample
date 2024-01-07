@@ -1,4 +1,14 @@
 # ChatBot Sample
+for study
+
+## technology stack
+### Backend
+- Python 3.11.7
+- Flask 3.0.0
+
+### Frontend
+- Vue.js(CDN) 3.4.5
+
 ## install
 `poetry install`
 
