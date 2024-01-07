@@ -25,3 +25,6 @@
 ### sassをcssに変換
 - VSCodeにLive Sass Compiler をインストール
 - sassファイルを開いて、「Watch Sass」をクリックすると自動でcssファイルが作成される
+
+## UI Image
+<img width="835" alt="image" src="https://github.com/saiken/chatbot-sample/assets/827936/ef34e2e0-e3ec-4023-9e4a-f9c5d8698c93">
