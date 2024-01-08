@@ -6,6 +6,7 @@
 ## technology stack
 ### Backend
 - Python 3.11.7
+  - Poetry 1.7.1
 - Flask 3.0.0
 
 ### Frontend
