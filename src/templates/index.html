@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Chat Bot Sample</title>
     <link rel="stylesheet" href="/static/index.css">
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 </head>
 <body>
 <script type="importmap">
@@ -18,7 +19,7 @@
 <div id="app" class="ChatWindow">
 
 
-    <template v-for="talk in talkHistory">
+    <template v-for="(talk, index) in chatHistory" :key="index">
       <div class="ChatItem" :class="talk.role === 'user'?'ChatItem--customer':'ChatItem--expert'">
         <div class="ChatItem-meta">
           <div class="ChatItem-avatar">
@@ -36,7 +37,8 @@
     </template>
 
     <div class="ChatInput is-hidey">
-      <div class="ChatInput-input" contenteditable="true" placeholder="Type your message here..."></div>
+      <textarea v-model="chatInput" class="ChatInput-input" contenteditable="true" placeholder="Type your message here..."></textarea>
+      <button type="button" class="ChatInput-btnSend" @click="sendMessage">Send Message</button>
     </div>
 </div>
 {% endraw %}
@@ -47,20 +49,30 @@
   createApp({
     data() {
       return {
-        talkHistory:[
-          {
-            role: 'user',
-            message: 'こんにちは、むすめのプレゼントは何がいいですか？',
-          },
-          {
-            role: 'assistant',
-            message: `こんにちは！むすめへのプレゼントは、彼女の趣味や興味に合ったものが良いでしょう。
-以下はいくつかのアイデアですが、具体的な好みによって選ぶと良いでしょう
-・本や漫画: 彼女が読書が好きなら、お気に入りの作家や最新のベストセラーを選んでみてください。`
-          },
-        ],
+        chatInput: '',
+        chatHistory:[],
       };
-    }
+    },
+
+    methods: {
+      sendMessage() {
+        if(!this.chatInput) {
+          return;
+        }
+
+        this.chatHistory.push({
+            role: 'user',
+            message: this.chatInput,
+        });
+        this.chatInput = '';
+
+        axios.post('/api/sendMessage')
+             .then(({data}) => {
+                console.log(data);
+                this.chatHistory.push(data);
+             });
+      },
+    },
   }).mount('#app');
 </script>
 </body>
